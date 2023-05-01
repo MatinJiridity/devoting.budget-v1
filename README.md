@@ -1,2 +1,2 @@
 # devoting.budget-v1
-# Decentralized voting system using Blockchain, Solidity, Web3
+## Decentralized voting system using Blockchain, Solidity, Web3
