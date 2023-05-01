@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
-    
+    maxWidth: 'auto',
+    display: 'flex',
   },
   paper2: {
     marginTop: theme.spacing(8),
