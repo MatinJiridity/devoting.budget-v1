@@ -40,7 +40,7 @@ function PollsList() {
                   <TableCell component="th" scope="row">
                     
                     {poll.groupId}
-                    <p key={poll.groupId} className='postCredit'><Link to={`/poll/${poll.groupId}`}>Join</Link></p>
+                    <p  key={poll.groupId} className='postCredit'><Link style={{color: '#008000'}} to={`/poll/${poll.groupId}`}>Join</Link></p>
                     
                     {/* <JoinPoll pollId={poll.groupId} contract={contract} /> */}
                   </TableCell>
