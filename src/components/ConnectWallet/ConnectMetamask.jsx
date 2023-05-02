@@ -26,9 +26,7 @@ const ConnectMetamask = ({ accounts, setAccounts, setIsConnected }) => {
 
     return (
         <>
-            <Typography variant="h6" align="right" noWrap >
-                {isConnected ? (accounts) : (<Button className={classes.logout} color="primary" variant="contained" onClick={connectAccount}>Connect to Metamask</Button>)}
-            </Typography>
+            {isConnected ? (accounts) : (<button type="button" onClick={connectAccount}>Connect to Metamask</button>)}
         </>
     )
 }

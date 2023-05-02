@@ -77,80 +77,61 @@ const AddPoll = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
 
   }, [accounts, loaction])
-  
+
   return (
     <div>
-      <Container component="main" maxWidth="sm">
-        <Paper className={classes.paper} style={{ backgroundColor: '#eeeeee', }}>
-          <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}>
-            {
-              contract?.methods ? (
-                <div>
-                  <Box sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: 400,
-                    height: 600,
-                    backgroundColor: '#eeeeee',
-                    border: '2px solid #000',
-                    boxShadow: 24,
-                    p: 4,
-                    maxWidth: 'auto'
-                  }}>
-
-
+      <section className='addPoll'>
+        <h2>Add a New Poll</h2>
+          {
+            pending ? (
+              <div>
+                <h4>...pending</h4>
+                <Loading size={'100px'}/>
+              </div>
+            ) : (
+              <form>
+              <label htmlFor="pollName">Poll Name:</label>
+              <input
+                type="text"
+                id="pollName"
+                name="name"
+                onChange={(e) => setPollName(e.target.value.toString())}
+    
+              />
+              <label htmlFor="pollDescription">Poll Description:</label>
+              <textarea
+                id="pollDescription"
+                name="pollDescription"
+                onChange={(e) => setPollDescription(e.target.value.toString())}
+              />
+              <label htmlFor="pollCandidates">Poll Candidates: <h7>(coma separated)</h7></label>
+              <input
+                id="pollCandidates"
+                name="pollCandidates"
+                onChange={(e) => setCandidateArrey(e.target.value.split(','))}
+              />
+              {
+                contract?.methods ? (
+                  <>
                     {
-                      pending ? (
-                        <div>
-                          <Typography align='center' variant='h4' component='h1' >
-                            ...pending
-                          </Typography>
-                          <Loading size={'100px'} />
-                        </div>
+                      !isConnected ? (
+                        <ConnectMetamask accounts={accounts} setAccounts={setAccounts} setIsConnected={setIsConnected} />
                       ) : (
-                        <div>
-                          <Typography id="modal-modal-title" variant="h5" component="h2">
-                            Poll Form
-                          </Typography>
-                          <Grid container spacing={1}>
-                            <Grid item xs={9}>
-                              {error && <Error>contract not found: {error}</Error>}
-                            </Grid>
-                          </Grid>
-                          <Paper className={classes.paper} style={{}}>
-                            <form className={`${classes.root} ${classes.form}`} >
-                              <Typography variant="h6"></Typography>
-                              <TextField name="title" variant="outlined" label="name" fullWidth onChange={(e) => setPollName(e.target.value.toString())} />
-                              <TextField name="message" variant="outlined" label="description" fullWidth multiline rows={4} onChange={(e) => setPollDescription(e.target.value.toString())} />
-                              <TextField name="tags" variant="outlined" label="candidate (coma separated)" fullWidth onChange={(e) => setCandidateArrey(e.target.value.split(','))} />
-                            </form>
-                          </Paper>
-
-                          <br></br>
-                          {
-                            !isConnected ? (
-                              <ConnectMetamask accounts={accounts} setAccounts={setAccounts} setIsConnected={setIsConnected} />
-                            ) : (
-                              <Button style={{ marginLeft: '20px' }} className={classes.buttonSubmit} variant="contained" size='small' color="primary" onClick={createGroup}>comfirm</Button>
-                            )
-                          }
-
-                        </div>
+                        <button
+                          type="button"
+                          onClick={createGroup}
+                        >Add Poll</button>
                       )
                     }
-                  </Box>
-                </div>
-              ) : (
-                <Typography>
-                  contrat did not find!(refresh)
-                </Typography>
-              )
-            }
-          </form>
-        </Paper>
-      </Container>
+                  </>
+                ) : (
+                  <h3>contrat did not find!(refresh)</h3>
+                )
+              }
+            </form>
+            )
+          }
+      </section>
     </div>
   )
 }

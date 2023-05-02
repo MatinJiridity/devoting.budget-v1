@@ -68,6 +68,13 @@ main {
 
 section {
   margin-top: 1em;
+
+}
+
+.addPoll {
+  margin-top: 2em;
+  max-width: 550px;
+  margin: auto;
 }
 
 article {
@@ -101,7 +108,7 @@ form {
 }
 
 textarea {
-  height: 200px;
+  height: 150px;
 }
 
 .postCredit {
